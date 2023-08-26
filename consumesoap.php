@@ -18,11 +18,13 @@ $client=new SoapClient(NULL,$options);
 <body>
 
 <div class="container">
-  <h2>SOAP Web Service Client Side Demo</h2>
+  <h2>Calculadora</h2>
   <form class="form-inline" action="" method="POST">
     <div class="form-group">
-      <label for="name">Nombre</label>
-      <input type="text" name="name" class="form-control"  placeholder="Ingrese su nombre" required/>
+      <label for="name">numero 1</label>
+      <input type="number" name="num1" class="form-control"  placeholder="Primer numero" required/>
+      <label for="name">numero 2</label>
+      <input type="number" name="num2" class="form-control"  placeholder="Segundo numero" required/>
     </div>
     <button type="submit" name="submit" class="btn btn-default">Enviar</button>
   </form>
@@ -31,9 +33,10 @@ $client=new SoapClient(NULL,$options);
   <?php
 	if(isset($_POST['submit']))
 	{
-		$name = $_POST['name'];
+		$num1 = $_POST['num1'];
+    $num2 = $_POST['num2'];
 		
-		$response =  $client->getMessage($name);  
+		$response =  $client->getMessage($num1,$num2);  
 
 		if(empty($response))
 			echo "Price of that product is not available";

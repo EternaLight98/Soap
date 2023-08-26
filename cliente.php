@@ -1,36 +1,34 @@
-<?php
-// client
-/*
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <div>
+      <form method="post" action>
+        <div  class="form-group">
+          <label for="num1">Numero 1</label>
+          <input type="number" name="num1" required>
+        </div>
 
+        <div  class="form-group">
+          <label for="num2">Numero 2</label>
+          <input type="number" name="num2" required>
+        </div>
 
-
-$client=new SoapClient(NULL,$options);
-
-*/
-
-if(isset($_REQUEST["name"])){
-  $name=$_REQUEST["name"];
-}else{
-  $name='Andres';
-}
-
-$options= array(
-  'location' 	=>	'http://localhost:90/soap/sinwsdl/soapserver.php',
-  'uri'		=>	'http://localhost:90/soap/sinwsdl/soapserver.php'
-);
-$client=new SoapClient(NULL,$options);
-
-if(isset($_REQUEST["name"])){
-  $data['respuesta']=$client->saludo($name.'!!');
-  echo json_encode($data);
-}else{
-  echo $client->saludo($name.'!!')."</br>";
-  echo "resultado de la suma ".$client->suma(3,5)."</br>";//  8
-  echo "resultado de la resta ".$client->restas(8,2)."</br>"; //6
-  echo "resultado de la mutiplicacion ".$client->multi(2,6)."</br>"; //12
-  echo "resultado de la division".$client->div(12,2)."</br>"; //6
+        <div class="form-group">
+          <label for="operaciones">Operaciones</label>
+          <select class="form-group" name="operaciones">
+            <option value="suma">Suma</option>
+            <option value="resta">Resta</option>
+            <option value="multi">Multiplicación</option>
+            <option value="div">División</option>
+          </select>
+          <button type="submit" class="btn btn-primary" name="calcular">Calcular</button>
+      </form> 
   
-}
-
-
-?>
+</body>
+</html>
