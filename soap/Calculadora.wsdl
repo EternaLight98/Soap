@@ -1,0 +1,193 @@
+<definitions
+  name="WSDLCalcula" 
+  targetNamespace="http://localhost/soap"
+  xmlns:tns="http://localhost/soap" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+  xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" 
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+  xmlns="http://schemas.xmlsoap.org/wsdl/"
+>
+<message name="sumaRequest">
+  <part name="num1" type="xsd:float"/>
+  <part name="num2" type="xsd:float"/>
+</message>
+<message name="sumaResponse">
+  <part name="resultado" type="xsd:float"/>
+</message>
+
+
+
+<message name="restaRequest">
+  <part name="a" type="xsd:float"/>
+  <part name="b" type="xsd:float"/>
+</message>
+<message name="restaResponse">
+  <part name="resultado" type="xsd:float"/>
+</message>
+
+
+
+<message name="multiRequest">
+  <part name="num1" type="xsd:float"/>
+  <part name="num2" type="xsd:float"/>
+</message>
+<message name="multiResponse">
+  <part name="resultado" type="xsd:float"/>
+</message>
+
+
+
+<message name="divRequest">
+  <part name="a" type="xsd:float"/>
+  <part name="b" type="xsd:float"/>
+</message>
+<message name="divResponse">
+  <part name="resultado" type="xsd:float"/>
+</message>
+
+
+
+<message name="factorialRequest">
+  <part name="a" type="xsd:float"/>
+  <part name="b" type="xsd:float"/>
+</message>
+<message name="factorialResponse">
+  <part name="resultado" type="xsd:float"/>
+</message>
+
+
+
+<portType name="CalculaPortType">
+  <operation name="suma">
+    <input message="tns:sumaRequest"/>
+    <output message="tns:sumaResponse"/>
+  </operation>
+   <operation name="resta">
+    <input message="tns:restaRequest"/>
+    <output message="tns:restaResponse"/>
+  </operation>
+    <operation name="multi">
+    <input message="tns:multiRequest"/>
+    <output message="tns:multiResponse"/>
+  </operation>
+    <operation name="div">
+    <input message="tns:divRequest"/>
+    <output message="tns:divResponse"/>
+  </operation>
+    <operation name="factorial">
+    <input message="tns:factorialRequest"/>
+    <output message="tns:factorialResponse"/>
+  </operation>
+</portType>
+
+
+
+
+<binding name="CalculaBinding" type="tns:CalculaPortType">
+  <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+  <operation name="suma">
+    <soap:operation 
+      soapAction="http://localhost/soap/soapserver.php?method=suma"
+    />
+    <input>
+     <soap:body 
+         namespace="http://localhost/soap" 
+         use="encoded"     
+         encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+    </input>
+    <output>
+     <soap:body 
+         namespace="http://localhost/soap" 
+         use="encoded" 
+         encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+    </output>
+  </operation>
+  <operation name="resta">
+    <soap:operation 
+      soapAction="http://localhost/soap/soapserver.php?method=resta"
+    />
+    <input>
+     <soap:body 
+         namespace="http://localhost/soap" 
+         use="encoded"     
+         encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+    </input>
+    <output>
+     <soap:body 
+         namespace="http://localhost/soap" 
+         use="encoded" 
+         encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+    </output>
+  </operation>
+    <operation name="multi">
+    <soap:operation 
+      soapAction="http://localhost:90/soap/soapserver.php?method=multi"
+    />
+    <input>
+     <soap:body 
+         namespace="http://localhost/soap" 
+         use="encoded"     
+         encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+    </input>
+    <output>
+     <soap:body 
+         namespace="http://localhost/soap" 
+         use="encoded" 
+         encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+    </output>
+  </operation>
+    <operation name="div">
+    <soap:operation 
+      soapAction="http://localhost/soap/soapserver.php?method=div"
+    />
+    <input>
+     <soap:body 
+         namespace="http://localhost/soap" 
+         use="encoded"     
+         encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+    </input>
+    <output>
+     <soap:body 
+         namespace="http://localhost/soap" 
+         use="encoded" 
+         encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+    </output>
+  </operation>
+  <operation name="factorial">
+    <soap:operation 
+      soapAction="http://localhost/soap/soapserver.php?method=factorial"
+    />
+    <input>
+     <soap:body 
+         namespace="http://localhost/soap" 
+         use="encoded"     
+         encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+    </input>
+    <output>
+     <soap:body 
+         namespace="http://localhost/soap" 
+         use="encoded" 
+         encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+    </output>
+  </operation>
+
+
+</binding>
+<service name="Calcula">
+  <port name="CalculaPort" binding="tns:CalculaBinding">
+    <soap:address location="http://localhost/soap/soapserver.php"/>
+  </port>
+</service>
+</definitions>
+
